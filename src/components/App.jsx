@@ -6,6 +6,7 @@ import type { Tracks, Milestone, MilestoneMap, TrackId, answerValue } from '../c
 import { Switch, Route, Link } from 'react-router-dom';
 import Header from './Header';
 import CompanionQuiz from './CompanionQuiz';
+import SnowFlake from './SnowFlake'
 
 const stateToPath = (state) => {
   if (!state || !state.milestoneByTrack) return null
@@ -17,8 +18,8 @@ const stateToPath = (state) => {
 
 const defaultState = () => {
   return {
-    name: undefined,
-    nameInputted: false,
+    name: 'Tyler Suderman',
+    nameInputted: true,
     menuOpen: false,
     milestoneMatrix: {
       'SELF': {
@@ -53,12 +54,12 @@ const defaultState = () => {
       }
     },
     milestoneByTrack: {
-      'SELF': 0,
-      'TEAM': 0,
-      'PEERS': 0,
-      'SUPERIORS': 0,
-      'BUSINESS': 0,
-      'WORK/LIFE': 0
+      'SELF': 9,
+      'TEAM': 6,
+      'PEERS': 1,
+      'SUPERIORS': 5,
+      'BUSINESS': 7,
+      'WORK/LIFE': 3
     },
     focusedTrackId: 'SELF'
   }
@@ -133,7 +134,15 @@ class App extends React.Component {
               handleNameChangeFn={this.handleNameChange.bind(this)}
               handleMileStoneChangeFn={this.handleTrackMilestoneChange.bind(this)}/>
           }/>
-          <Route path = '/results' render={()=><SnowflakeApp />} />
+          <Route path = '/results' render={()=><SnowFlake
+              name={this.state.name}
+              setFocusedTrackIdFn={this.setFocusedTrackId.bind(this)}
+              focusedTrackId={this.state.focusedTrackId}
+              milestoneByTrack={this.state.milestoneByTrack}
+              handleTrackMilestoneChangeFn={this.handleTrackMilestoneChange.bind(this)}
+              setFocusedTrackIdFn={this.setFocusedTrackId.bind(this)}/> 
+
+          }/>
           {/* <Route component={Error404}/> */}
         </Switch>
         <div style={{display: 'flex', paddingBottom: '20px'}}>
@@ -146,14 +155,17 @@ class App extends React.Component {
     )
   }
 
+
   handleHamburgerMenuClick() {
     this.setState({
       menuOpen : !this.state.menuOpen
     })
   }
 
+  // QUIZ HANDLERS
+
   handleNameChange(name: String) {
-    this.setState({name, nameInputted: true})
+    this.setState({name, nameInputted: true});
   }
 
   calculateMilestoneTotals(trackId, milestoneMatrix) {
@@ -163,7 +175,7 @@ class App extends React.Component {
       newMilestone += milestoneMatrix[trackId][key]
     }
     milestoneByTrack[trackId] = newMilestone
-    this.setState({ milestoneByTrack }, console.log(this.state))
+    this.setState({ milestoneByTrack })
   }
 
   handleTrackMilestoneChange(trackId: TrackId, questionIndex: Number, milestone: Milestone) {
@@ -179,6 +191,42 @@ class App extends React.Component {
       return this.state.milestoneByTrack[trackId]
     })
     return { pathname: process.env.BACKEND_URL + '/results', query: { answerValues: values.join(''), name: this.state.name} }
+  }
+
+  //SNOWFLAKE HANDLERS
+
+  handleHamburgerMenuClick() {
+    this.setState({
+      menuOpen : !this.state.menuOpen
+    })
+  }
+
+  handleTrackMilestoneChange(trackId: TrackId, milestone: Milestone) {
+    const milestoneByTrack = this.state.milestoneByTrack
+    milestoneByTrack[trackId] = milestone
+
+    this.setState({ milestoneByTrack, focusedTrackId: trackId })
+  }
+
+  shiftFocusedTrack(delta: number) {
+    let index = trackIds.indexOf(this.state.focusedTrackId)
+    index = (index + delta + trackIds.length) % trackIds.length
+    const focusedTrackId = trackIds[index]
+    this.setState({ focusedTrackId })
+  }
+
+  setFocusedTrackId(trackId: TrackId) {
+    let index = trackIds.indexOf(trackId)
+    const focusedTrackId = trackIds[index]
+    this.setState({ focusedTrackId })
+  }
+
+  shiftFocusedTrackMilestoneByDelta(delta: number) {
+    let prevMilestone = this.state.milestoneByTrack[this.state.focusedTrackId]
+    let milestone = prevMilestone + delta
+    if (milestone < 0) milestone = 0
+    if (milestone > 5) milestone = 5
+    this.handleTrackMilestoneChange(this.state.focusedTrackId, milestone)
   }
 }
 
