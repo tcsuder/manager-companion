@@ -7,10 +7,10 @@ type Props = {
   questions: QuestionsList,
   trackIndex: Number,
   trackId: String,
-  handleMileStoneChangeFn: (TrackId, Milestone) => void
+  handleRadioSelectionFn: (TrackId, Milestone) => void
 }
 
-function QuestionGroup({questions, trackIndex, trackId, handleMileStoneChangeFn}) {
+function QuestionGroup({questions, trackIndex, trackId, handleRadioSelectionFn}) {
   const answerOptions = ['rarely', 'sometimes', 'usually'];
   return (
     <div
@@ -58,7 +58,7 @@ function QuestionGroup({questions, trackIndex, trackId, handleMileStoneChangeFn}
                   lineIndex={lineIndex}
                   trackIndex={trackIndex}
                   questionIndex={questionIndex}
-                  handleMileStoneChangeFn={handleMileStoneChangeFn}/>
+                  handleRadioSelectionFn={handleRadioSelectionFn}/>
               )
             }
           })

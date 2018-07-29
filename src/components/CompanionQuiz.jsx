@@ -4,7 +4,7 @@ import React from 'react';
 import { tracks, trackIds, } from '../constants';
 import type { Tracks, Milestone, MilestoneMap, TrackId } from '../constants';
 import QuestionsGrid from './QuestionsGrid.jsx';
-import { Link } from 'react-router-dom';
+
 
 type Props = {
   tracks: Array,
@@ -13,10 +13,10 @@ type Props = {
   nameInputted: Boolean,
   handleQuizSubmitFn: () => Object,
   handleNameChangeFn: () => void,
-  handleTrackMilestoneChangeFn: (TrackId, Milestone) => void
+  handleRadioSelectionFn: (TrackId, Milestone) => void
 }
 
-function CompanionQuiz({trackIds, tracks, handleQuizSubmitFn, name, nameInputted, handleNameChangeFn, handleMileStoneChangeFn}) {
+function CompanionQuiz({trackIds, tracks, name, nameInputted, handleNameChangeFn, handleRadioSelectionFn, handleQuizSubmitFn, quizSubmitted}) {
   let _name = null;
 
   function onNameChange() {
@@ -53,17 +53,28 @@ function CompanionQuiz({trackIds, tracks, handleQuizSubmitFn, name, nameInputted
           border: 5px solid #000;
           padding: 10px 20px;
           transition: background-color .5s ease;
-          margin: 50px auto;
+          margin: 10px auto 30px auto;
         }
         div.submit-button:hover {
           background-color: #202020;
           color: #fff;
           cursor: pointer;
         }
+        div.required {
+          color: #f5b431;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        div.required span {
+          position: relative;
+          left: -140px;
+        }
       `}</style>
       <div style={{
-        width: '45%'
-        }}>
+        width: '45%',
+        display: 'flex'
+      }}>
         <input
           type="text"
           className="name-input h1"
@@ -73,7 +84,9 @@ function CompanionQuiz({trackIds, tracks, handleQuizSubmitFn, name, nameInputted
           value={name}
           ref={(input) => {_name = input;}}
           onChange={onNameChange}
-        />
+        /><div className='required'><h2 style={{margin: '0', height: '10px'}}>
+          { name === '' ? <span>*</span> : <span></span>}
+        </h2></div>
       </div>
       <div style={{
             padding: '50px 0',
@@ -99,14 +112,16 @@ function CompanionQuiz({trackIds, tracks, handleQuizSubmitFn, name, nameInputted
         <QuestionsGrid
           trackIds={trackIds}
           tracks={tracks}
-          handleMileStoneChangeFn={handleMileStoneChangeFn}/>
+          handleRadioSelectionFn={handleRadioSelectionFn}/>
       </div>
 
-      <Link to={handleQuizSubmitFn()} >
+      { quizSubmitted && !nameInputted ? <h3 style={{color: '#f5b431', margin: '0', textAlign: 'center'}}>please include your name before submitting</h3> : null }
+
+      <div onClick={() => handleQuizSubmitFn()} >
         <div className='submit-button'>SUBMIT</div>
-      </Link>
+      </div>
     </div>
   )
 }
 
-export default CompanionQuiz
+export default CompanionQuiz;

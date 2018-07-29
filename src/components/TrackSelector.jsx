@@ -12,7 +12,6 @@ type Props = {
 }
 
 function TrackSelector(props) {
-  console.log(props.setFocusedTrackIdFn);
   function buildDisplayArray(trackIds) {
     let displayRow = [];
     let displayArray = [];

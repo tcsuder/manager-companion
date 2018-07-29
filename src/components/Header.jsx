@@ -97,9 +97,11 @@ function Header(props: Props) {
 				</div>
 			</ul>
       <div className='titleContainer' style={styles.titleContainer}>
-        <h1 style={styles.title}>
-          Manager Companion
-        </h1>
+				<Link to={'https://managercompanion.com/'}>
+					<h1 style={styles.title}>
+						Manager Companion
+					</h1>
+				</Link>
       </div>
 			{props.menuOpen !== null &&
 				<Hamburger

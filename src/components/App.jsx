@@ -3,7 +3,8 @@
 import React from "react";
 import { tracks, trackIds, } from '../constants'
 import type { Tracks, Milestone, MilestoneMap, TrackId, answerValue } from '../constants'
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Header from './Header';
 import CompanionQuiz from './CompanionQuiz';
 import SnowFlake from './SnowFlake'
@@ -18,8 +19,9 @@ const stateToPath = (state) => {
 
 const defaultState = () => {
   return {
-    name: 'Tyler Suderman',
-    nameInputted: true,
+    name: '',
+    nameInputted: false,
+    quizSubmitted: false,
     menuOpen: false,
     milestoneMatrix: {
       'SELF': {
@@ -54,12 +56,12 @@ const defaultState = () => {
       }
     },
     milestoneByTrack: {
-      'SELF': 9,
-      'TEAM': 6,
-      'PEERS': 1,
-      'SUPERIORS': 5,
-      'BUSINESS': 7,
-      'WORK/LIFE': 3
+      'SELF': 0,
+      'TEAM': 0,
+      'PEERS': 0,
+      'SUPERIORS': 0,
+      'BUSINESS': 0,
+      'WORK/LIFE': 0
     },
     focusedTrackId: 'SELF'
   }
@@ -69,6 +71,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = defaultState();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.setState({menuOpen: false})
+    }
   }
 
   render() {
@@ -83,7 +91,7 @@ class App extends React.Component {
             margin: 0 auto;
           }
           a {
-            color: #888;
+            color: #000;
             text-decoration: none;
           }
           .title-text {
@@ -114,25 +122,27 @@ class App extends React.Component {
         <Switch>
           <Route exact path = '/quiz' render={()=>
             <CompanionQuiz
-              pathname='/quiz'
-              tracks={tracks}
-              trackIds={trackIds}
-              name={this.state.name}
-              nameInputted={this.state.nameInputted}
-              handleQuizSubmitFn={this.handleQuizSubmit.bind(this)}
-              handleNameChangeFn={this.handleNameChange.bind(this)}
-              handleMileStoneChangeFn={this.handleTrackMilestoneChange.bind(this)}/>
+                pathname='/quiz'
+                tracks={tracks}
+                trackIds={trackIds}
+                name={this.state.name}
+                nameInputted={this.state.nameInputted}
+                quizSubmitted={this.state.quizSubmitted}
+                handleQuizSubmitFn = {this.handleQuizSubmit.bind(this)}
+                handleNameChangeFn={this.handleNameChange.bind(this)}
+                handleRadioSelectionFn={this.handleRadioSelection.bind(this)}/>
           }/>
           <Route exact path = '/' render={()=>
             <CompanionQuiz
-              pathname='/quiz'
-              tracks={tracks}
-              trackIds={trackIds}
-              name={this.state.name}
-              nameInputted={this.state.nameInputted}
-              handleQuizSubmitFn={this.handleQuizSubmit.bind(this)}
-              handleNameChangeFn={this.handleNameChange.bind(this)}
-              handleMileStoneChangeFn={this.handleTrackMilestoneChange.bind(this)}/>
+                pathname='/quiz'
+                tracks={tracks}
+                trackIds={trackIds}
+                name={this.state.name}
+                nameInputted={this.state.nameInputted}
+                quizSubmitted={this.state.quizSubmitted}
+                handleQuizSubmitFn = {this.handleQuizSubmit.bind(this)}
+                handleNameChangeFn={this.handleNameChange.bind(this)}
+                handleRadioSelectionFn={this.handleRadioSelection.bind(this)}/>
           }/>
           <Route path = '/results' render={()=><SnowFlake
               name={this.state.name}
@@ -140,7 +150,7 @@ class App extends React.Component {
               focusedTrackId={this.state.focusedTrackId}
               milestoneByTrack={this.state.milestoneByTrack}
               handleTrackMilestoneChangeFn={this.handleTrackMilestoneChange.bind(this)}
-              setFocusedTrackIdFn={this.setFocusedTrackId.bind(this)}/> 
+              setFocusedTrackIdFn={this.setFocusedTrackId.bind(this)}/>
 
           }/>
           {/* <Route component={Error404}/> */}
@@ -169,6 +179,7 @@ class App extends React.Component {
   }
 
   calculateMilestoneTotals(trackId, milestoneMatrix) {
+    console.log(milestoneMatrix);
     const milestoneByTrack = Object.assign({}, this.state.milestoneByTrack);
     let newMilestone = 0
     for(var key in milestoneMatrix[trackId]) {
@@ -178,19 +189,17 @@ class App extends React.Component {
     this.setState({ milestoneByTrack })
   }
 
-  handleTrackMilestoneChange(trackId: TrackId, questionIndex: Number, milestone: Milestone) {
+  handleRadioSelection(trackId: TrackId, questionIndex: Number, milestone: Milestone) {
     const milestoneMatrix = Object.assign({}, this.state.milestoneMatrix);
     milestoneMatrix[trackId][questionIndex] = milestone
-    this.setState({ milestoneMatrix})
+    this.setState({ milestoneMatrix}, console.log(milestoneMatrix));
     this.calculateMilestoneTotals(trackId, milestoneMatrix);
   }
 
   handleQuizSubmit() {
-    if (!this.state || !this.state.milestoneByTrack) return null
-    const values = trackIds.map((trackId) => {
-      return this.state.milestoneByTrack[trackId]
-    })
-    return { pathname: process.env.BACKEND_URL + '/results', query: { answerValues: values.join(''), name: this.state.name} }
+    this.setState({quizSubmitted: true})
+    if (!this.state.nameInputted) return
+    this.props.history.push('/results');
   }
 
   //SNOWFLAKE HANDLERS
@@ -230,4 +239,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -76,7 +76,7 @@ class TrackDetail extends React.Component<Props> {
               {track.resources.articles.length === 0 ? <p style={{color: '#ccc'}}>articles unavailable</p> :
                 track.resources.articles.map((article, i) => {
                   return (
-                    <li style={{listStyleType:'none'}}>
+                    <li key={i} style={{listStyleType:'none'}}>
                       {article.link ?
                         <Link to={article.link}>
                           <div className='link'>
@@ -86,7 +86,8 @@ class TrackDetail extends React.Component<Props> {
                         :
                         <div className='no-link'>
                           <p style={{margin: '0', maxWidth: '70%'}}>{article.title}</p>
-                        </div>}
+                        </div>
+                      }
                     </li>
                   )
                 })
@@ -97,7 +98,7 @@ class TrackDetail extends React.Component<Props> {
               {track.resources.books.length === 0 ? <p style={{color: '#ccc'}}>books unavailable</p> :
                 track.resources.books.map((book, i) => {
                   return (
-                    <li style={{listStyleType:'none'}}>
+                    <li key={i} style={{listStyleType:'none'}}>
                       <div className='no-link'>
                         <p style={{margin: '0', maxWidth: '80%'}}><span style={{fontWeight: 'bold'}}>{book.title}</span>  - {book.author}</p>
                       </div>

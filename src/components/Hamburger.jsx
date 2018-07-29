@@ -9,7 +9,7 @@ function HamburgerMenu(props: Props) {
 	const isOpen = props.isOpen || false
 	const strokeWidth = props.strokeWidth || 3
   const halfStrokeWidth = `-${strokeWidth / 2}px`
-  const animationDuration = props.animationDuration || '0.4'
+  const animationDuration = props.animationDuration || '0.3'
   const borderRadius = `2px`
   const color = `#000`
 
@@ -51,7 +51,7 @@ function HamburgerMenu(props: Props) {
 			marginTop: halfStrokeWidth
 		}
 	};
-	
+
 	return (
 		<div className='hamWrapper' style={{
 			height:'60%',

@@ -261,3 +261,8 @@ export const categoryIds: Set<string> = trackIds.reduce((set, trackId) => {
 export const categoryColorScale = d3.scaleOrdinal()
   .domain(categoryIds)
   .range(['#E18132', '#454E52', '#E53332', '#2BC237', '#327DF6', '#4B2366'])
+
+
+// #57e5ae
+// #199dbf
+// #f5b431

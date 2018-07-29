@@ -10,7 +10,7 @@ type Props = {
 }
 
 
-function RadioInputLine({questionIndex, lineIndex, trackIndex, trackId, handleMileStoneChangeFn}) {
+function RadioInputLine({questionIndex, lineIndex, trackIndex, trackId, handleRadioSelectionFn}) {
   // Here I'm using the lineIndex from the loop in the .map() call in trackQuestions to calculate the values of the radio input. Seems liek there's a better way to do that.
   return (
     <div className='box radio-input'>
@@ -39,7 +39,7 @@ function RadioInputLine({questionIndex, lineIndex, trackIndex, trackId, handleMi
       `}</style>
       <label
           htmlFor={`input-${trackIndex}${questionIndex}${lineIndex}`}
-          onClick={() => handleMileStoneChangeFn(trackId, questionIndex, lineIndex)}>
+          onClick={() => handleRadioSelectionFn(trackId, questionIndex, lineIndex)}>
         <input
             id={`input-${trackIndex}${questionIndex}${lineIndex}`}
             type="radio"
