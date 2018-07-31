@@ -56,12 +56,12 @@ const defaultState = () => {
       }
     },
     milestoneByTrack: {
-      'SELF': 3,
-      'TEAM': 4,
-      'PEERS': 5,
-      'SUPERIORS': 6,
-      'BUSINESS': 7,
-      'WORK/LIFE': 8
+      'SELF': 0,
+      'TEAM': 0,
+      'PEERS': 0,
+      'SUPERIORS': 0,
+      'BUSINESS': 0,
+      'WORK/LIFE': 0
     },
     focusedTrackId: 'SELF'
   }
