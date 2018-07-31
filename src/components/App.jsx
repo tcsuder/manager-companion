@@ -56,12 +56,12 @@ const defaultState = () => {
       }
     },
     milestoneByTrack: {
-      'SELF': 0,
-      'TEAM': 0,
-      'PEERS': 0,
-      'SUPERIORS': 0,
-      'BUSINESS': 0,
-      'WORK/LIFE': 0
+      'SELF': 3,
+      'TEAM': 4,
+      'PEERS': 5,
+      'SUPERIORS': 6,
+      'BUSINESS': 7,
+      'WORK/LIFE': 8
     },
     focusedTrackId: 'SELF'
   }
@@ -75,7 +75,7 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      this.setState({menuOpen: false})
+      this.setState({menuOpen: false, name: ''})
     }
   }
 
@@ -179,7 +179,6 @@ class App extends React.Component {
   }
 
   calculateMilestoneTotals(trackId, milestoneMatrix) {
-    console.log(milestoneMatrix);
     const milestoneByTrack = Object.assign({}, this.state.milestoneByTrack);
     let newMilestone = 0
     for(var key in milestoneMatrix[trackId]) {
@@ -192,7 +191,7 @@ class App extends React.Component {
   handleRadioSelection(trackId: TrackId, questionIndex: Number, milestone: Milestone) {
     const milestoneMatrix = Object.assign({}, this.state.milestoneMatrix);
     milestoneMatrix[trackId][questionIndex] = milestone
-    this.setState({ milestoneMatrix}, console.log(milestoneMatrix));
+    this.setState({ milestoneMatrix});
     this.calculateMilestoneTotals(trackId, milestoneMatrix);
   }
 

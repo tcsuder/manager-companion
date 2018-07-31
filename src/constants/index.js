@@ -26,7 +26,8 @@ export type QuizResults = {
 export const milestones = [0, 1, 2, 3]
 
 export const milestoneToPoints = (milestone: Milestone): number => {
-  return Math.floor(milestone/3);
+  // change this to mess with the way the snowflake present info
+  return Math.ceil((milestone - 1)/3);
 }
 
 // export const pointsToLevels = {
