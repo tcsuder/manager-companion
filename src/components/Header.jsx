@@ -93,15 +93,15 @@ function Header(props: Props) {
 						<Link to={{ pathname: '/quiz' }}><li className='navOption'>Start Quiz</li></Link>
 					}
 
-					<Link to={{ pathname: '/' }}><li className='navOption'>About</li></Link>
+					<a href='https://managercompanion.com/about/'><li className='navOption'>About</li></a>
 				</div>
 			</ul>
       <div className='titleContainer' style={styles.titleContainer}>
-				<Link to={'https://managercompanion.com/'}>
+				<a href='https://managercompanion.com/'>
 					<h1 style={styles.title}>
 						Manager Companion
 					</h1>
-				</Link>
+				</a>
       </div>
 			{props.menuOpen !== null &&
 				<Hamburger
