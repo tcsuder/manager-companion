@@ -1,14 +1,7 @@
 import React from "react";
-import type { QuestionsList, TrackId, Milestone } from '../constants'
 import QuestionLine from './QuestionLine.jsx'
 import RadioInputLine from './RadioInputLine.jsx'
 
-type Props = {
-  questions: QuestionsList,
-  trackIndex: Number,
-  trackId: String,
-  handleRadioSelectionFn: (TrackId, Milestone) => void
-}
 
 function QuestionGroup({questions, trackIndex, trackId, handleRadioSelectionFn}) {
   const answerOptions = ['rarely', 'sometimes', 'usually'];

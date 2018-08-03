@@ -1,13 +1,4 @@
 import React from "react";
-import type { QuestionsList, TrackId, Milestone } from '../constants'
-
-type Props = {
-  trackId: String,
-  lineIndex: Number,
-  trackIndex: Number,
-  questionIndex: Number,
-  handleMileStoneChangeFn: (TrackId, Milestone) => void
-}
 
 
 function RadioInputLine({questionIndex, lineIndex, trackIndex, trackId, handleRadioSelectionFn}) {

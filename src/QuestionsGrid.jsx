@@ -1,12 +1,5 @@
-import type { Tracks, TrackId } from '../constants'
 // import QuestionGroup from './QuestionGroup'
 
-
-type Props = {
-  trackIds: Array,
-  tracks: Tracks,
-  handleTrackMilestoneChangeFn: (TrackId, Milestone) => void
-}
 
 function QuestionsGrid({trackIds, tracks, handleMileStoneChangeFn}) {
   return (

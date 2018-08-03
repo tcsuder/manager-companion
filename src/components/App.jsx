@@ -2,20 +2,11 @@
 
 import React from "react";
 import { tracks, trackIds, } from '../constants'
-import type { Tracks, Milestone, MilestoneMap, TrackId, answerValue } from '../constants'
 import { Switch, Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Header from './Header';
 import CompanionQuiz from './CompanionQuiz';
 import SnowFlake from './SnowFlake'
-
-const stateToPath = (state) => {
-  if (!state || !state.milestoneByTrack) return null
-  const values = trackIds.map((trackId) => {
-    return state.milestoneByTrack[trackId]
-  })
-  return { pathname: '/', query: { answerValues: values.join(''), name: state.name} }
-}
 
 const defaultState = () => {
   return {
@@ -74,8 +65,8 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      this.setState({menuOpen: false, name: ''})
+    if (this.props.location !== prevProps.location && this.props.location.pathname !== "/results") {
+      this.setState(defaultState());
     }
   }
 

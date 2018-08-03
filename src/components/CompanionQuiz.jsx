@@ -2,19 +2,7 @@
 
 import React from 'react';
 import { tracks, trackIds, } from '../constants';
-import type { Tracks, Milestone, MilestoneMap, TrackId } from '../constants';
 import QuestionsGrid from './QuestionsGrid.jsx';
-
-
-type Props = {
-  tracks: Array,
-  trackIds: Array,
-  name: String,
-  nameInputted: Boolean,
-  handleQuizSubmitFn: () => Object,
-  handleNameChangeFn: () => void,
-  handleRadioSelectionFn: (TrackId, Milestone) => void
-}
 
 function CompanionQuiz({trackIds, tracks, name, nameInputted, handleNameChangeFn, handleRadioSelectionFn, handleQuizSubmitFn, quizSubmitted}) {
   let _name = null;

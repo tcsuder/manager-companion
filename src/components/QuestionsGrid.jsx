@@ -1,13 +1,6 @@
 import React from "react";
-import type { Tracks, TrackId } from '../constants'
 import QuestionGroup from './QuestionGroup'
 
-
-type Props = {
-  trackIds: Array,
-  tracks: Tracks,
-  handleRadioSelectionFn: (TrackId, Milestone) => void
-}
 
 function QuestionsGrid({trackIds, tracks, handleRadioSelectionFn}) {
   return (

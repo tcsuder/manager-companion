@@ -2,14 +2,8 @@
 
 import { tracks, milestones, categoryColorScale } from '../constants'
 import React from 'react'
-import type { MilestoneMap, TrackId, Milestone } from '../constants'
 import { Link } from 'react-router-dom'
 
-type Props = {
-  milestoneByTrack: MilestoneMap,
-  trackId: TrackId,
-  handleTrackMilestoneChangeFn: (TrackId, Milestone) => void
-}
 
 class TrackDetail extends React.Component<Props> {
 

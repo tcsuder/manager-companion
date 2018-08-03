@@ -6,7 +6,6 @@ import NightingaleChart from '../components/NightingaleChart'
 // import KeyboardListener from '../components/KeyboardListener'
 import TrackDetail from '../components/TrackDetail'
 import { eligibleTitles, trackIds } from '../constants'
-import type { Milestone, MilestoneMap, TrackId, QuizResults } from '../constants'
 import { Link } from 'react-router-dom'
 
 // const quizResultToState = (props: QuizResults): ?SnowflakeAppState => {
