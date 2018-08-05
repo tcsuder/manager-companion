@@ -1,7 +1,7 @@
 {
   "name": "CompanionQuiz",
   "version": "1.0.0",
-  "homepage": "https://tcsuder.github.io/companion-quiz/",
+  "homepage": "https://tcsuder.github.io/manager-companion/",
   "engines": {
     "node": "9.8.0"
   },
