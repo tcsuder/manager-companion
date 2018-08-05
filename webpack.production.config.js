@@ -49,7 +49,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template:'template.ejs',
       appMountId: 'react-app-root',
-      title: 'Redux Karaoke',
+      title: 'Manager Companion',
       filename: resolve(__dirname, "build", "index.html"),
     }),
   ]

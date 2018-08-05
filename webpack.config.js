@@ -74,7 +74,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template:'template.ejs',
       appMountId: 'react-app-root',
-      title: 'React Template',
+      title: 'Manager Companion',
       filename: resolve(__dirname, "build", "index.html"),
     }),
   ]
