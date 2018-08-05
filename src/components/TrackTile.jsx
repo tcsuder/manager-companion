@@ -1,15 +1,15 @@
-import React from 'react'
-import { trackIds, tracks, categoryColorScale } from '../constants'
+import React from 'react';
+import { trackIds, tracks, categoryColorScale } from '../constants';
 
 function TrackTile(props) {
   return (
     <td key={props.trackId}
       onClick={() => props.setFocusedTrackIdFn(props.trackId)}>
       <div className="track-selector-value"
-          style={{
-            height: '175px',
-            width: '175px'
-          }}>
+        style={{
+          height: '175px',
+          width: '175px'
+        }}>
         <p style={{margin:'0', paddingBottom:'10px'}}>{tracks[props.trackId].shortDisplayName}</p>
         <div style={{
           border: '4px solid ' + (props.trackId == props.focusedTrackId ? '#000': categoryColorScale(tracks[props.trackId].category)),
@@ -21,13 +21,13 @@ function TrackTile(props) {
           <h1 style={{
             fontSize:'50px',
             textAlign: 'center'
-            }}>
+          }}>
             {props.milestoneByTrack[props.trackId]}
           </h1>
         </div>
       </div>
     </td>
-  )
+  );
 }
 
-export default TrackTile
+export default TrackTile;

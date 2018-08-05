@@ -8,7 +8,7 @@ function CompanionQuiz({trackIds, tracks, name, nameInputted, handleNameChangeFn
   let _name = null;
 
   function onNameChange() {
-    handleNameChangeFn(_name.value)
+    handleNameChangeFn(_name.value);
   }
 
   return (
@@ -77,10 +77,10 @@ function CompanionQuiz({trackIds, tracks, name, nameInputted, handleNameChangeFn
         </h2></div>
       </div>
       <div style={{
-            padding: '50px 0',
-            minHeight: '125px',
-            borderBottom: '2px solid #ccc'
-          }}>
+        padding: '50px 0',
+        minHeight: '125px',
+        borderBottom: '2px solid #ccc'
+      }}>
         <h2>For each of the following sections, use the scale to indicate how each statement applies to your current situation as a manager. It is important to evaluate the statements honestly and without over-thinking your answers.</h2>
         {
           //   // TODO: this is super hacky right now rewrite this section and use a cursor position library to delay appreance of instructions until cursor-reengagement
@@ -109,7 +109,7 @@ function CompanionQuiz({trackIds, tracks, name, nameInputted, handleNameChangeFn
         <div className='submit-button'>SUBMIT</div>
       </div>
     </div>
-  )
+  );
 }
 
 export default CompanionQuiz;

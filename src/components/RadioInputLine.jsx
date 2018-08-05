@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 
 function RadioInputLine({questionIndex, lineIndex, trackIndex, trackId, handleRadioSelectionFn}) {
@@ -29,17 +29,17 @@ function RadioInputLine({questionIndex, lineIndex, trackIndex, trackId, handleRa
         }
       `}</style>
       <label
-          htmlFor={`input-${trackIndex}${questionIndex}${lineIndex}`}
-          onClick={() => handleRadioSelectionFn(trackId, questionIndex, lineIndex)}>
+        htmlFor={`input-${trackIndex}${questionIndex}${lineIndex}`}
+        onClick={() => handleRadioSelectionFn(trackId, questionIndex, lineIndex)}>
         <input
-            id={`input-${trackIndex}${questionIndex}${lineIndex}`}
-            type="radio"
-            className="radio-button"
-            name={`radioGroup-${trackIndex}${questionIndex}`}/>
+          id={`input-${trackIndex}${questionIndex}${lineIndex}`}
+          type="radio"
+          className="radio-button"
+          name={`radioGroup-${trackIndex}${questionIndex}`}/>
         <div className="check"></div>
       </label>
     </div>
-  )
+  );
 }
 
-export default RadioInputLine
+export default RadioInputLine;

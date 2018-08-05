@@ -12,11 +12,11 @@ function QuestionsGrid({trackIds, tracks, handleMileStoneChangeFn}) {
             trackIndex={trackIndex}
             questions={tracks[trackId].questions}
             handleMileStoneChangeFn={(track, question, milestone) => handleMileStoneChangeFn(track, question, milestone)} />
-          </div>
-        )
-      }
+        </div>
+      );
+    }
     )
-  )
+  );
 }
 
-export default QuestionsGrid
+export default QuestionsGrid;

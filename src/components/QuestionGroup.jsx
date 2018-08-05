@@ -1,6 +1,6 @@
-import React from "react";
-import QuestionLine from './QuestionLine.jsx'
-import RadioInputLine from './RadioInputLine.jsx'
+import React from 'react';
+import QuestionLine from './QuestionLine.jsx';
+import RadioInputLine from './RadioInputLine.jsx';
 
 
 function QuestionGroup({questions, trackIndex, trackId, handleRadioSelectionFn}) {
@@ -42,7 +42,7 @@ function QuestionGroup({questions, trackIndex, trackId, handleRadioSelectionFn})
                   key={lineIndex}
                   lineIndex={lineIndex}
                   question={question}/>
-              )
+              );
             } else {
               return (
                 <RadioInputLine
@@ -52,14 +52,14 @@ function QuestionGroup({questions, trackIndex, trackId, handleRadioSelectionFn})
                   trackIndex={trackIndex}
                   questionIndex={questionIndex}
                   handleRadioSelectionFn={handleRadioSelectionFn}/>
-              )
+              );
             }
           })
-        )
+        );
       })}
 
     </div>
-  )
+  );
 }
 
-export default QuestionGroup
+export default QuestionGroup;

@@ -1,8 +1,8 @@
 // @flow
 
-import React from 'react'
-import TrackTile from './TrackTile'
-import { trackIds, tracks, categoryColorScale } from '../constants'
+import React from 'react';
+import TrackTile from './TrackTile';
+import { trackIds, tracks, categoryColorScale } from '../constants';
 
 function TrackSelector(props) {
   function buildDisplayArray(trackIds) {
@@ -12,24 +12,24 @@ function TrackSelector(props) {
     trackIds.map((trackId, i) => {
       displayRow.push(
         <TrackTile
-            trackId = {trackId}
-            focusedTrackId = {props.focusedTrackId}
-            milestoneByTrack = {props.milestoneByTrack}
-            setFocusedTrackIdFn = {props.setFocusedTrackIdFn}/>
-      )
+          trackId = {trackId}
+          focusedTrackId = {props.focusedTrackId}
+          milestoneByTrack = {props.milestoneByTrack}
+          setFocusedTrackIdFn = {props.setFocusedTrackIdFn}/>
+      );
       if (displayRow.length === 2) {
         displayArray.push(
           <tr key={i}>
             {displayRow[0]}
             {displayRow[1]}
           </tr>
-        )
-        displayRow = []
+        );
+        displayRow = [];
       } else if (displayRow.length > 2) {
-        row.splice(0, 2)
+        row.splice(0, 2);
       }
-    })
-    return displayArray
+    });
+    return displayArray;
   }
 
   return (
@@ -46,7 +46,7 @@ function TrackSelector(props) {
         {buildDisplayArray(trackIds)}
       </tbody>
     </table>
-  )
+  );
 }
 
-export default TrackSelector
+export default TrackSelector;

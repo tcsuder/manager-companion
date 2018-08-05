@@ -1,5 +1,5 @@
-import React from "react";
-import QuestionGroup from './QuestionGroup'
+import React from 'react';
+import QuestionGroup from './QuestionGroup';
 
 
 function QuestionsGrid({trackIds, tracks, handleRadioSelectionFn}) {
@@ -14,11 +14,11 @@ function QuestionsGrid({trackIds, tracks, handleRadioSelectionFn}) {
               trackIndex={trackIndex}
               questions={tracks[trackId].questions}
               handleRadioSelectionFn={(track, question, milestone) => handleRadioSelectionFn(track, question, milestone)} />
-            </div>
-          )
-        })}
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }
 
-export default QuestionsGrid
+export default QuestionsGrid;

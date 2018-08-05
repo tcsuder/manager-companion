@@ -1,27 +1,27 @@
 // @flow
 import * as d3 from 'd3'
 
-export type TrackId = 'SELF' | 'TEAM' | 'PEERS' | 'SUPERIORS' |
-  'BUSINESS' | 'WORK/LIFE'
-
-  // 'MOBILE' | 'WEB_CLIENT' | 'FOUNDATIONS' | 'SERVERS' |
-  //   'PROJECT_MANAGEMENT' | 'COMMUNICATION'
-
-export type Milestone = 0 | 1 | 2 | 3
-
-export type MilestoneMap = {
-  'SELF': Milestone,
-  'TEAM': Milestone,
-  'PEERS': Milestone,
-  'SUPERIORS': Milestone,
-  'BUSINESS': Milestone,
-  'WORK/LIFE': Milestone
-}
-
-export type QuizResults = {
-  'name': string,
-  'answerValues': number
-}
+// export type TrackId = 'SELF' | 'TEAM' | 'PEERS' | 'SUPERIORS' |
+//   'BUSINESS' | 'WORK/LIFE'
+//
+//   // 'MOBILE' | 'WEB_CLIENT' | 'FOUNDATIONS' | 'SERVERS' |
+//   //   'PROJECT_MANAGEMENT' | 'COMMUNICATION'
+//
+// export type Milestone = 0 | 1 | 2 | 3
+//
+// export type MilestoneMap = {
+//   'SELF': Milestone,
+//   'TEAM': Milestone,
+//   'PEERS': Milestone,
+//   'SUPERIORS': Milestone,
+//   'BUSINESS': Milestone,
+//   'WORK/LIFE': Milestone
+// }
+//
+// export type QuizResults = {
+//   'name': string,
+//   'answerValues': number
+// }
 
 export const milestones = [0, 1, 2, 3]
 
@@ -42,29 +42,29 @@ export const milestoneToPoints = (milestone: Milestone): number => {
 
 // export const maxLevel = 36
 
-export type Track = {
-  shortDisplayName: string,
-  longDisplayName: string,
-  category: string, // TK categoryId type?
-  description: string,
-  questions: QuestionsList,
-  milestones: {
-    summary: string,
-    signals: string[],
-    examples: string[]
-  }
-}
-
-export type QuestionsList = [string, string, string];
-
-type Tracks = {|
-  'SELF': Track,
-  'TEAM': Track,
-  'PEERS': Track,
-  'SUPERIORS': Track,
-  'BUSINESS': Track,
-  'WORK/LIFE': Track,
-|}
+// export type Track = {
+//   shortDisplayName: string,
+//   longDisplayName: string,
+//   category: string, // TK categoryId type?
+//   description: string,
+//   questions: QuestionsList,
+//   milestones: {
+//     summary: string,
+//     signals: string[],
+//     examples: string[]
+//   }
+// }
+//
+// export type QuestionsList = [string, string, string];
+//
+// type Tracks = {|
+//   'SELF': Track,
+//   'TEAM': Track,
+//   'PEERS': Track,
+//   'SUPERIORS': Track,
+//   'BUSINESS': Track,
+//   'WORK/LIFE': Track,
+// |}
 
 export const tracks: Tracks = {
   "SELF": {
